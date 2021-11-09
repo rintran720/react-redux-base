@@ -1,29 +1,13 @@
 import { PropsWithChildren } from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import RouteProps from './RouteProps';
+import { Route } from 'react-router-dom';
 
-function PublicRoute({
-  children,
-  isAuthenticated,
-  ...rest
-}: PropsWithChildren<RouteProps>) {
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        !isAuthenticated ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: '/',
-              state: { from: location }
-            }}
-          />
-        )
-      }
-    />
-  );
+interface Props {
+  path: string;
+  exact: boolean;
+}
+
+function PublicRoute({ children, ...rest }: PropsWithChildren<Props>) {
+  return <Route {...rest} render={({ location }) => children} />;
 }
 
 export default PublicRoute;

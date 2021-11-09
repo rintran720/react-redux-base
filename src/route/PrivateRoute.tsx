@@ -1,11 +1,11 @@
 import { PropsWithChildren } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-type Props = {
+interface Props {
   path: string;
   isAuthenticated: boolean;
   exact: boolean;
-};
+}
 
 function PrivateRoute({
   children,
