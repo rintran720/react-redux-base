@@ -1,14 +1,17 @@
-import React from 'react';
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './App';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
+import store from './store';
+require('dotenv').config();
 
+const rootElement = document.getElementById('root');
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+  rootElement
 );
 
 // If you want to start measuring performance in your app, pass a function
