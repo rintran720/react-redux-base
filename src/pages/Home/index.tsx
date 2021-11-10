@@ -45,6 +45,12 @@ export default function Home() {
       <Button type="primary" danger>
         <Link to={'/abc'}>Not Found page</Link>
       </Button>
+      <Button type="primary">
+        <Link to={'/permission'}>Page need permission (with)</Link>
+      </Button>
+      <Button type="primary" danger>
+        <Link to={'/permission2'}>Page need permission (without)</Link>
+      </Button>
     </div>
   );
 }

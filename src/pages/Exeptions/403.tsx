@@ -7,13 +7,12 @@ interface StateType {
 }
 
 export default function NotFound() {
-  console.log('404');
+  console.log('403');
   const location: Location<StateType> = useLocation();
-  const { pathname } = location;
   return (
-    <div className="404">
-      <h2>404 page</h2>
-      <b>Can not found {pathname}</b>
+    <div className="403">
+      <h2>403 page</h2>
+      <b>Permission denied!</b>
     </div>
   );
 }
