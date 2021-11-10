@@ -7,9 +7,7 @@ import { StoreType } from '../../reducers';
 
 export default function Home() {
   const state = useSelector((state: StoreType) => state.homeViewReducer);
-  console.log(state);
   const { t, i18n } = useTranslation();
-
   const changeLanguage = (event: SyntheticEvent, lang: 'en' | 'fr') => {
     i18n.changeLanguage(lang);
   };
