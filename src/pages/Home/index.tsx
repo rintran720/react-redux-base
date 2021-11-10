@@ -1,9 +1,13 @@
 import { Button } from 'antd';
 import { SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { StoreType } from '../../reducers';
 
 export default function Home() {
+  const state = useSelector((state: StoreType) => state.homeViewReducer);
+  console.log(state);
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (event: SyntheticEvent, lang: 'en' | 'fr') => {

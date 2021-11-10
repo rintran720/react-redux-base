@@ -9,11 +9,10 @@ interface StateType {
 export default function NotFound() {
   const location: Location<StateType> = useLocation();
   const { pathname } = location;
-  const from = location.state?.from || '';
   return (
     <div className="404">
       <h2>404 page</h2>
-      <b>Can not found {pathname !== '404' ? pathname : from}</b>
+      <b>Can not found {pathname}</b>
     </div>
   );
 }

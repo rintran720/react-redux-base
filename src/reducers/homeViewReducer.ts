@@ -18,7 +18,10 @@ const initialState: HomeStateType = {
   posts: [],
   authentication: {
     jwt: '',
-    user: {}
+    user: {
+      name: 'Tran Rin',
+      id: 'rintran720@gmail.com'
+    }
   }
 };
 
@@ -38,7 +41,7 @@ const homeViewReducer = (state = initialState, action: ActionType) => {
     case homeViewConstants.GET_POSTS_SUCCESS:
       return {
         ...state,
-        posts: action.payload.posts?.data,
+        posts: action.payload?.posts?.data || [],
         loading: false
       };
     default:

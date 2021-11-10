@@ -1,6 +1,6 @@
 interface ActionType {
   type: string;
-  payload: any;
+  payload?: any;
 }
 
 export default ActionType;
