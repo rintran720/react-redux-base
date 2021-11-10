@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import mapViewReducer from './mapViewReducer';
+import homeViewReducer from './homeViewReducer';
 
 const rootReducer = combineReducers({
-  mapViewReducer
+  homeViewReducer
 });
 
 export default rootReducer;
