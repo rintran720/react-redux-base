@@ -1,22 +1,22 @@
 import { Spin } from 'antd';
 import { FC, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import NotFound from '../pages/Exeptions/404';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+
 const PrivatePage = lazy(() => import('../pages/Private'));
 const HomePage = lazy(() => import('../pages/Home'));
 const AboutPage = lazy(() => import('../pages/About'));
 const LoginPage = lazy(() => import('../pages/Login'));
-// const NotFoundPage = lazy(() => import('../pages/Exeptions/404'));
+const NotFoundPage = lazy(() => import('../pages/Exeptions/404'));
 
 const RouteApp: FC = () => {
   const isAuthenticated = true; // useSelector((state) => state.authentication.isAuthenticated);
 
   return (
-    <Router>
-      <Switch>
-        <Suspense fallback={<Spin />}>
+    <Suspense fallback={<Spin />}>
+      <Router>
+        <Switch>
           {/* Public pages */}
           <PublicRoute path="/" exact={true}>
             <HomePage />
@@ -39,13 +39,12 @@ const RouteApp: FC = () => {
             <PrivatePage />
           </PrivateRoute>
           {/* Handle not found */}
-          <Route component={NotFound} />
-        </Suspense>
-      </Switch>
-      {/* <Switch>
-        <Route component={NotFound} />
-      </Switch> */}
-    </Router>
+          <Route>
+            <NotFoundPage />
+          </Route>
+        </Switch>
+      </Router>
+    </Suspense>
   );
 };
 

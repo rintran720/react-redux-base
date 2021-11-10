@@ -40,7 +40,10 @@ export default function Home() {
         <Link to={'/about'}>Public page About</Link>
       </Button>
       <Button type="primary">
-        <Link to={'/login'}>public page Login</Link>
+        <Link to={'/login'}>Public page Login</Link>
+      </Button>
+      <Button type="primary" danger>
+        <Link to={'/abc'}>Not Found page</Link>
       </Button>
     </div>
   );
