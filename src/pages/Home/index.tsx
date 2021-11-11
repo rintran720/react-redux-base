@@ -3,10 +3,11 @@ import { SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { StoreType } from '../../reducers';
+import ListPost from '../../common/components/ListPost';
+import { RootState } from '../../store';
 
 export default function Home() {
-  const state = useSelector((state: StoreType) => state.homeViewReducer);
+  const state = useSelector((state: RootState) => state.homeView);
   const { t, i18n } = useTranslation();
   const changeLanguage = (event: SyntheticEvent, lang: 'en' | 'fr') => {
     i18n.changeLanguage(lang);
@@ -51,6 +52,8 @@ export default function Home() {
       <Button type="primary" danger>
         <Link to={'/permission2'}>Page need permission (without)</Link>
       </Button>
+      <br />
+      <ListPost></ListPost>
     </div>
   );
 }

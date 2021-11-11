@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import homeViewReducer from './homeViewReducer';
+import homeViewReducer from './homeView.reducer';
 
 const rootReducer = combineReducers({
-  homeViewReducer
+  homeView: homeViewReducer
 });
 
 export type StoreType = ReturnType<typeof rootReducer>;

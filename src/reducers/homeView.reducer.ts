@@ -1,13 +1,17 @@
-import { homeViewConstants } from '../configs/homeView.constant';
-import ActionType from './actionType';
+import { homeViewConstants } from '../actions/homeView.constant';
+import AnyAction from './actionType';
 
-interface PostType {}
-interface AuthenticationType {
+export interface PostType {
+  id: string;
+  title: string;
+  description: string;
+}
+export interface AuthenticationType {
   jwt: string;
   user: object;
 }
 
-interface HomeStateType {
+export interface HomeStateType {
   loading: boolean;
   posts: Array<PostType>;
   authentication: AuthenticationType;
@@ -15,7 +19,13 @@ interface HomeStateType {
 
 const initialState: HomeStateType = {
   loading: true,
-  posts: [],
+  posts: [
+    {
+      id: '123',
+      title: 'Hot news',
+      description: 'lorem'
+    }
+  ],
   authentication: {
     jwt: '',
     user: {
@@ -25,7 +35,7 @@ const initialState: HomeStateType = {
   }
 };
 
-const homeViewReducer = (state = initialState, action: ActionType) => {
+const homeViewReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case homeViewConstants.GET_POSTS_REQUEST:
       return {
@@ -41,7 +51,7 @@ const homeViewReducer = (state = initialState, action: ActionType) => {
     case homeViewConstants.GET_POSTS_SUCCESS:
       return {
         ...state,
-        posts: action.payload?.posts?.data || [],
+        posts: action.payload?.posts || [],
         loading: false
       };
     default:
