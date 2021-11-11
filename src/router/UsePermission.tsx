@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Fragment, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 
 interface Props {
@@ -19,7 +19,7 @@ function UsePermission({
       return p === permission;
     }) > -1
   ) {
-    return <Fragment>{children}</Fragment>;
+    return <>{children}</>;
   } else {
     return (
       <Redirect

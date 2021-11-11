@@ -70,28 +70,30 @@ export function getPosts(
 ): ThunkResult<Promise<void>> {
   return async (dispatch, getState) => {
     dispatch(getPosts_request());
-    try {
-      const posts: Array<PostType> = await axios.get(getPostsURL);
-      if (posts) {
-        dispatch(getPosts_success(posts));
-        if (callback) {
-          callback();
+    await setTimeout(async () => {
+      try {
+        const posts: Array<PostType> = await axios.get(getPostsURL);
+        if (posts) {
+          dispatch(getPosts_success(posts));
+          if (callback) {
+            callback();
+          }
+        } else {
+          dispatch(getPosts_failure());
         }
-      } else {
+      } catch (error) {
+        // dispatch(
+        //   getPosts_success([
+        //     {
+        //       id: '456',
+        //       title: 'Super Hot news',
+        //       description: 'lorem ipsum'
+        //     }
+        //   ])
+        // );
+
         dispatch(getPosts_failure());
       }
-    } catch (error) {
-      // dispatch(
-      //   getPosts_success([
-      //     {
-      //       id: '456',
-      //       title: 'Super Hot news',
-      //       description: 'lorem ipsum'
-      //     }
-      //   ])
-      // );
-
-      dispatch(getPosts_failure());
-    }
+    }, 2000);
   };
 }

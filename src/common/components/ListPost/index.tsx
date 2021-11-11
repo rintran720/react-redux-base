@@ -1,5 +1,4 @@
 import { Button, Space, Table, Tag } from 'antd';
-import { Fragment } from 'react';
 import { getPosts } from '../../../actions/homeView.action';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
 import { AppDispatch, RootState } from '../../../store';
@@ -79,13 +78,16 @@ const data = [
 
 export default function ListPost() {
   const dispatch: AppDispatch = useAppDispatch();
-  const posts = useAppSelector((state: RootState) => state.homeView.posts);
-
+  const { posts, loading } = useAppSelector(
+    (state: RootState) => state.homeView
+  );
   const dispatchGetPosts = () => dispatch(getPosts({}));
   return (
-    <Fragment>
+    <>
       <Table columns={columns} dataSource={data} />
-      <Button onClick={dispatchGetPosts}>Get posts</Button>
-    </Fragment>
+      <Button onClick={dispatchGetPosts} loading={loading}>
+        Get posts
+      </Button>
+    </>
   );
 }
