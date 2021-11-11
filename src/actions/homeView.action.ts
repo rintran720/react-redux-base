@@ -23,7 +23,7 @@ export function thunkAction(): ThunkResult<string> {
 }
 // Async thunk action
 export function asynThunkAction(
-  padyload: any,
+  payload: any,
   callback?: Function
 ): ThunkResult<Promise<void>> {
   return async (dispatch, getState) => {
@@ -65,7 +65,7 @@ export function getPosts_failure(): AnyAction {
 }
 
 export function getPosts(
-  padyload: any,
+  payload: any,
   callback?: Function
 ): ThunkResult<Promise<void>> {
   return async (dispatch, getState) => {
