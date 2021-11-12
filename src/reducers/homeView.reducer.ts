@@ -18,7 +18,7 @@ export interface HomeStateType {
 }
 
 const initialState: HomeStateType = {
-  loading: true,
+  loading: false,
   posts: [
     {
       id: '123',

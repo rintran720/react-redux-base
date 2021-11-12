@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import axios from 'axios';
 import { ThunkAction } from 'redux-thunk';
 import AnyAction from '../reducers/actionType';
@@ -29,7 +30,9 @@ export function asynThunkAction(
   return async (dispatch, getState) => {
     dispatch(getPosts_request());
     try {
-      const posts: Array<PostType> = await axios.get(getPostsURL);
+      const posts: Array<PostType> = await axios.get(getPostsURL, {
+        timeout: 2000
+      });
       if (posts) {
         dispatch(getPosts_success(posts));
         if (callback) {
@@ -72,7 +75,9 @@ export function getPosts(
     dispatch(getPosts_request());
     await setTimeout(async () => {
       try {
-        const posts: Array<PostType> = await axios.get(getPostsURL);
+        const posts: Array<PostType> = await axios.get(getPostsURL, {
+          timeout: 2000
+        });
         if (posts) {
           dispatch(getPosts_success(posts));
           if (callback) {
@@ -91,7 +96,7 @@ export function getPosts(
         //     }
         //   ])
         // );
-
+        message.error('Can not connect to server');
         dispatch(getPosts_failure());
       }
     }, 2000);

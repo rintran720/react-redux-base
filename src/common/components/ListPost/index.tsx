@@ -1,7 +1,5 @@
 import { Button, Space, Table, Tag } from 'antd';
-import { getPosts } from '../../../actions/homeView.action';
-import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
-import { AppDispatch, RootState } from '../../../store';
+import { PostType } from '../../../reducers/homeView.reducer';
 
 const columns = [
   {
@@ -76,12 +74,13 @@ const data = [
   }
 ];
 
-export default function ListPost() {
-  const dispatch: AppDispatch = useAppDispatch();
-  const { posts, loading } = useAppSelector(
-    (state: RootState) => state.homeView
-  );
-  const dispatchGetPosts = () => dispatch(getPosts({}));
+type Props = {
+  loading: boolean;
+  posts: Array<PostType>;
+  dispatchGetPosts: any;
+};
+
+export default function ListPost({ loading, dispatchGetPosts, posts }: Props) {
   return (
     <>
       <Table columns={columns} dataSource={data} />

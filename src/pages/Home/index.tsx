@@ -1,17 +1,26 @@
 import { Button } from 'antd';
 import { SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getPosts } from '../../actions/homeView.action';
 import ListPost from '../../common/components/ListPost';
-import { RootState } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { AppDispatch, RootState } from '../../store';
 
 export default function Home() {
-  const state = useSelector((state: RootState) => state.homeView);
   const { t, i18n } = useTranslation();
+  const { posts, loading } = useAppSelector(
+    (state: RootState) => state.homeView
+  );
+  const dispatch: AppDispatch = useAppDispatch();
+
+  // Functions
   const changeLanguage = (event: SyntheticEvent, lang: 'en' | 'fr') => {
     i18n.changeLanguage(lang);
   };
+
+  const dispatchGetPosts = () => dispatch(getPosts({}));
+
   return (
     <div className="home" style={{}}>
       <h2>Home page</h2>
@@ -53,7 +62,11 @@ export default function Home() {
         <Link to={'/permission2'}>Page need permission (without)</Link>
       </Button>
       <br />
-      <ListPost></ListPost>
+      <ListPost
+        posts={posts}
+        loading={loading}
+        dispatchGetPosts={dispatchGetPosts}
+      ></ListPost>
     </div>
   );
 }
